@@ -96,55 +96,10 @@ def save_screenshot(driver, name: str):
     return filepath
 
 
-def wait_for_element(driver, test_id: str, timeout: int = 10):
-    """Wait for element with data-testid to be present."""
-    wait = WebDriverWait(driver, timeout)
-    return wait.until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, f'[data-testid="{test_id}"]'))
-    )
-
-
-def wait_for_element_clickable(driver, test_id: str, timeout: int = 10):
-    """Wait for element with data-testid to be clickable."""
-    wait = WebDriverWait(driver, timeout)
-    return wait.until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, f'[data-testid="{test_id}"]'))
-    )
-
-
-def wait_for_element_visible(driver, test_id: str, timeout: int = 10):
-    """Wait for element with data-testid to be visible."""
-    wait = WebDriverWait(driver, timeout)
-    return wait.until(
-        EC.visibility_of_element_located((By.CSS_SELECTOR, f'[data-testid="{test_id}"]'))
-    )
-
-
 def wait_for_url_contains(driver, url_part: str, timeout: int = 10):
     """Wait for URL to contain specified string."""
     wait = WebDriverWait(driver, timeout)
     return wait.until(EC.url_contains(url_part))
-
-
-def get_element_by_testid(driver, test_id: str):
-    """Get element by data-testid attribute."""
-    return driver.find_element(By.CSS_SELECTOR, f'[data-testid="{test_id}"]')
-
-
-def click_element(driver, test_id: str):
-    """Click element with data-testid."""
-    element = wait_for_element_clickable(driver, test_id)
-    element.click()
-    return element
-
-
-def type_text(driver, test_id: str, text: str):
-    """Type text into element with data-testid."""
-    element = wait_for_element(driver, test_id)
-    element.clear()
-    element.send_keys(text)
-    return element
-
 
 def get_body_class(driver):
     """Get the class attribute of the body element."""
@@ -156,11 +111,6 @@ def generate_unique_username():
     """Generate a unique username for testing."""
     timestamp = int(time.time() * 1000)
     return f"testuser_{timestamp}"
-
-
-def navigate_to(driver, path: str):
-    """Navigate to a specific path."""
-    driver.get(f"{BASE_URL}{path}")
 
 
 def clear_session(driver):
@@ -187,3 +137,9 @@ def log_test_failure(test_name: str, error: str, duration: float):
     """Log test failure."""
     logger.error(f"✗ FAILED: {test_name} ({duration:.2f}s)")
     logger.error(f"  Error: {error}")
+
+def logout(driver):
+    person_Icon = driver.find_element(By.CSS_SELECTOR, '[data-testid="PersonIcon"]')
+    logout_Btn = driver.find_element(By.CSS_SELECTOR, '[data-testid="arrow-right-from-bracketIcon"]')      
+    person_Icon.click()
+    logout_Btn.click()
