@@ -20,15 +20,16 @@
 ---
 ## ⭐ 실행 방법
 1. 환경 설정</br>
-- 파이썬 버전 확인</br>
-`python --version //3.11.9`</br>
-`가상환경 활성화 -> vsCode -> Select Interpreter ->  파이썬 버전 설정 후 venv 설정`
+- 파이썬 버전 확인
+    `python --version //3.11.9`
+- 가상환경 활성화
+    ` vsCode -> Select Interpreter ->  파이썬 버전 설정 후 venv 설정`
 
 2. 의존성 설치(프로젝트에 필요한 패키지 설치)
-`pip install -r requirements.txt`
+- `pip install -r requirements.txt`
 
 3. 개인 테스트 브랜치 생성
-git check -b feature/name
+- `git check -b feature/name`
 ---
 ## 👩‍💻 프로젝트 팀 소개
 
