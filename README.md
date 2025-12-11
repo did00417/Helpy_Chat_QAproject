@@ -34,7 +34,7 @@
 - `pip install -r requirements.txt`
 
 3. 개인 테스트 브랜치 생성
-- `git check -b feature/name`
+- `git checkout -b feature/name`
 
 ---
 
