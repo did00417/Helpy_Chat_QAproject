@@ -13,7 +13,7 @@ from utils import (
     save_screenshot,
 )
 
-# 테스트 케이스 TC-CB-001, TC-CB-001 완료
+# 테스트 케이스 TC-CB-001, TC-CB-008 완료
 
 def test_ai_chat_reply():
     test_name = "AI 헬피챗 채팅 + 복붙 테스트"
@@ -76,7 +76,7 @@ def verify_copy_button(driver, reply_element):
     copy_btn = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="copyIcon"]'
     )
-    print("복사 버튼 찾음:", copy_btn)
+    print("복사 버ss튼 찾음:", copy_btn)
     copy_btn.click()
     time.sleep(0.3)  # 복사 처리 대기
 
