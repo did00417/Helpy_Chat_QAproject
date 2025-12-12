@@ -31,7 +31,9 @@
     ` vsCode -> Select Interpreter ->  파이썬 버전 설정 후 venv 설정`
 
 2. 의존성 설치(프로젝트에 필요한 패키지 설치)
-- `pip install -r requirements.txt`
+- 맥 설치 `pip install -r requirements_mac.txt`
+
+- 윈도우 설치` pip install -r requirements_win.txt`
 
 3. 개인 테스트 브랜치 생성
 - `git checkout -b feature/name`
