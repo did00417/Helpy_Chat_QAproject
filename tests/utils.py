@@ -168,12 +168,28 @@ def logout(driver):
 # 5) 기타 유틸 헬퍼
 # ================================
 
+# def clear_session(driver):
+#     """쿠키 + localStorage + sessionStorage 초기화"""
+#     log_test_step("세션 초기화")
+#     driver.delete_all_cookies()
+#     driver.execute_script("localStorage.clear();")
+#     driver.execute_script("sessionStorage.clear();")
+
 def clear_session(driver):
-    """쿠키 + localStorage + sessionStorage 초기화"""
+    """쿠키 + localStorage + sessionStorage 초기화 (페이지 로드 이후 안전하게 실행)"""
     log_test_step("세션 초기화")
-    driver.delete_all_cookies()
-    driver.execute_script("localStorage.clear();")
-    driver.execute_script("sessionStorage.clear();")
+
+    try:
+        driver.delete_all_cookies()
+
+        # 현재 페이지가 로드되었는지 확인
+        if driver.execute_script("return document.readyState") == "complete":
+            driver.execute_script("localStorage.clear();")
+            driver.execute_script("sessionStorage.clear();")
+        else:
+            log_test_step("⚠ 페이지 로드 전 clear_session 실행됨. localStorage 초기화 생략")
+    except Exception as e:
+        logger.warning(f"⚠ clear_session 중 localStorage 접근 실패: {e}")
 
 
 def generate_unique_username():
@@ -202,3 +218,17 @@ def open_advanced_menu(headless=False):
     wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '[role="menu"]')))
 
     return driver
+
+
+# ================================
+# 6) wait_for_error_message 함수 추가
+# ================================
+
+def wait_for_error_message(driver, text: str, timeout: int = 5):
+    """
+    화면에서 특정 에러 메시지가 나타날 때까지 대기 후 요소 반환
+    """
+    xpath = f"//*[contains(text(), '{text}')]"
+    return get_wait(driver, timeout).until(
+        EC.visibility_of_element_located((By.XPATH, xpath))
+    )

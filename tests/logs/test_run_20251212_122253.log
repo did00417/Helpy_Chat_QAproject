@@ -1,0 +1,9 @@
+2025-12-12 12:22:53,881 - INFO - ====== WebDriver manager ======
+2025-12-12 12:22:54,021 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:22:54,075 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:22:54,121 - INFO - Driver [/Users/myeongju/.wdm/drivers/chromedriver/mac64/143.0.7499.42/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-12 12:22:54,994 - INFO - ============================================================
+2025-12-12 12:22:54,994 - INFO - TEST START: 이메일 형식 오류(Invalid email format) 노출 테스트
+2025-12-12 12:22:54,994 - INFO - ============================================================
+2025-12-12 12:22:57,155 - INFO - ▶ 세션 초기화
+2025-12-12 12:22:58,495 - INFO - ✓ PASSED: 이메일 형식 오류(Invalid email format) 노출 테스트 (3.50s)
