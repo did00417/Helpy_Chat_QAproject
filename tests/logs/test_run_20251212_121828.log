@@ -1,0 +1,9 @@
+2025-12-12 12:18:28,622 - INFO - ====== WebDriver manager ======
+2025-12-12 12:18:28,760 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:18:28,818 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:18:28,858 - INFO - Driver [/Users/myeongju/.wdm/drivers/chromedriver/mac64/143.0.7499.42/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-12 12:18:29,745 - INFO - ============================================================
+2025-12-12 12:18:29,745 - INFO - TEST START: 잘못된 비밀번호 로그인 실패 테스트
+2025-12-12 12:18:29,745 - INFO - ============================================================
+2025-12-12 12:18:31,934 - INFO - ▶ 세션 초기화
+2025-12-12 12:18:34,063 - INFO - ✓ PASSED: 잘못된 비밀번호 로그인 실패 테스트 (4.32s)

@@ -1,0 +1,18 @@
+2025-12-12 12:47:18,498 - INFO - ====== WebDriver manager ======
+2025-12-12 12:47:18,641 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:47:18,697 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:47:18,745 - INFO - Driver [/Users/myeongju/.wdm/drivers/chromedriver/mac64/143.0.7499.42/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-12 12:47:19,610 - INFO - ============================================================
+2025-12-12 12:47:19,611 - INFO - TEST START: 회원가입 - 잘못된 비밀번호 조건 테스트 (12345678)
+2025-12-12 12:47:19,611 - INFO - ============================================================
+2025-12-12 12:47:21,745 - INFO - ▶ 세션 초기화
+2025-12-12 12:47:23,194 - INFO - ✓ PASSED: 회원가입 - 잘못된 비밀번호 조건 테스트 (12345678) (3.58s)
+2025-12-12 12:47:23,283 - INFO - ====== WebDriver manager ======
+2025-12-12 12:47:23,419 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:47:23,467 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:47:23,512 - INFO - Driver [/Users/myeongju/.wdm/drivers/chromedriver/mac64/143.0.7499.42/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-12 12:47:24,326 - INFO - ============================================================
+2025-12-12 12:47:24,326 - INFO - TEST START: 회원가입 - 잘못된 비밀번호 조건 테스트 (abcdefgh)
+2025-12-12 12:47:24,326 - INFO - ============================================================
+2025-12-12 12:47:26,488 - INFO - ▶ 세션 초기화
+2025-12-12 12:47:27,960 - INFO - ✓ PASSED: 회원가입 - 잘못된 비밀번호 조건 테스트 (abcdefgh) (3.63s)

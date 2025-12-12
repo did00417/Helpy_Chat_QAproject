@@ -1,0 +1,9 @@
+2025-12-12 12:51:06,116 - INFO - ====== WebDriver manager ======
+2025-12-12 12:51:06,259 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:51:06,317 - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-12 12:51:06,364 - INFO - Driver [/Users/myeongju/.wdm/drivers/chromedriver/mac64/143.0.7499.42/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-12 12:51:07,246 - INFO - ============================================================
+2025-12-12 12:51:07,247 - INFO - TEST START: 회원가입 - 필수 체크 미완료 시 버튼 비활성화 확인
+2025-12-12 12:51:07,247 - INFO - ============================================================
+2025-12-12 12:51:09,411 - INFO - ▶ 세션 초기화
+2025-12-12 12:51:21,024 - INFO - ✓ PASSED: 회원가입 - 필수 체크 미완료 시 버튼 비활성화 확인 (13.78s)
