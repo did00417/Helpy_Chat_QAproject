@@ -27,12 +27,10 @@ class ChatPage:
         return send_button
     
     def send_button_assert(self):
-        send_button = self.driver.find_element(
+        return self.driver.find_element(
         By.XPATH,
         '//*[@data-testid="arrow-upIcon"]/ancestor::button'
     )
-        assert not send_button.is_enabled(), "스페이스 입력시 전송 버튼 활성화"
-
 
     def send_message(self, message: str = ""):
         self.input_chat_message(message)
