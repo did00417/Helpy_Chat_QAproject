@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class ChatPage:
@@ -26,7 +27,7 @@ class ChatPage:
         return send_button
     
     def send_button_assert(self):
-        send_button = self.find_element(
+        send_button = self.driver.find_element(
         By.XPATH,
         '//*[@data-testid="arrow-upIcon"]/ancestor::button'
     )
@@ -39,10 +40,10 @@ class ChatPage:
         return self.driver
 
     def wait_for_ai_reply(self):
-        """AI 답변 대기"""
+        """AI 답변 대기 div -> span으로 수정"""
         reply = self.wait.until(
             EC.presence_of_element_located(
-                (By.CSS_SELECTOR, 'div[data-status="complete"]')
+                (By.CSS_SELECTOR, 'span[data-status="complete"]')
             )
         )
         return reply
@@ -83,3 +84,33 @@ class ChatPage:
                 )))
         file_upload_Btn.click()
         return file_upload_Btn
+    
+    # 수정내용 관련 메서드
+    def hover_update_message(self):
+        update_hover = self.driver.find_element(By.XPATH,
+        '//span[@data-status="complete" and contains(text(), "홍길동")]/ancestor::div[contains(@class, "MuiPaper-root")]')
+        ActionChains(self.driver).move_to_element(update_hover).perform()
+        return update_hover
+    
+    def click_update_button(self):
+        update_Btn = self.driver.find_element(By.XPATH,
+    '//button[contains(@aria-label, "수정")]')
+        update_Btn.click()
+        return update_Btn
+        
+    def update_message(self, u_message:str):
+        update_box = self.driver.find_element(By.XPATH,
+        '//from[.//textarea[@name = "input"]]')
+        update_box.click()
+        update_box.send_keys(Keys.CONTROL, "a")
+        update_box.send_keys(Keys.BACKSPACE)
+        update_box.send_keys(u_message)
+        return update_box
+    
+    def update_send_btn(self):
+        update_send_Btn = self.driver.find_element(By.XPATH, '//button[contains(text(), "보내기")]')
+        update_send_Btn.click()
+        return update_send_Btn
+    
+    def test(self):
+        print("안녕하세요")

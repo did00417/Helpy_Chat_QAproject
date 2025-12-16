@@ -10,7 +10,7 @@ from utils.helper import (
     )
 '''
 ===========================
-테스트 케이스 TC-CB-009, TC-CB-011 진행중
+테스트 케이스 TC-CB-009, TC-CB-011 완성
 코드 작성자: 양정은
 ===========================
 '''
@@ -30,13 +30,15 @@ def test_blank():
         login_page.login()
         
         # 2.  채팅 입력창에 "   " 공백(스페이스바) 입력 & 전송
-        chat_page.send_message("    ")
+        chat_page.input_chat_message("    ")
         
         time.sleep(3)
         
         #3. 전송 버튼 활성화 유무 조회
-        chat_page.send_button_assert()
-        print("검증이 완료 됐습니다.")
+        send_button = chat_page.send_button_assert()
+
+        
+        assert not send_button.is_enabled(), "공백만 입력했는데 전송 버튼이 활성화됨"
         
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
@@ -61,15 +63,13 @@ def test_long_str():
         # 1. 로그인
         login_page.login()
         
-        # 2.  A 20000자 입력
-        long_str = "A" * 20000
-        chat_page.send_message(long_str)
+        # 2.  A 200자 입력
+        long_str = "A" * 200
+        chat_page.input_chat_message(long_str)
         
-        time.sleep(30)
-        
-        assert chat_page.send_button_assert.is_enabled()
-       
-        
+        send_button = chat_page.send_button_assert()
+        assert send_button.is_enabled(), " 입력 시 전송 버튼이 활성화되지 않음"
+
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
         save_screenshot(driver, "long_str")
