@@ -1,5 +1,11 @@
+import sys
+import os
 import pytest
-from utils import get_driver
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
+
+from utils.driver import get_driver
 
 @pytest.fixture
 def driver():

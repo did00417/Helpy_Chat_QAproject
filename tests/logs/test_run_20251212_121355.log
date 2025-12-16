@@ -1,9 +1,0 @@
-2025-12-12 12:13:55,572 - INFO - ====== WebDriver manager ======
-2025-12-12 12:13:55,708 - INFO - Get LATEST chromedriver version for google-chrome
-2025-12-12 12:13:55,758 - INFO - Get LATEST chromedriver version for google-chrome
-2025-12-12 12:13:55,810 - INFO - Driver [/Users/myeongju/.wdm/drivers/chromedriver/mac64/143.0.7499.42/chromedriver-mac-arm64/chromedriver] found in cache
-2025-12-12 12:13:56,686 - INFO - ============================================================
-2025-12-12 12:13:56,686 - INFO - TEST START: 로그인 정상 동작 테스트
-2025-12-12 12:13:56,686 - INFO - ============================================================
-2025-12-12 12:13:58,930 - INFO - ▶ 세션 초기화
-2025-12-12 12:14:01,427 - INFO - ✓ PASSED: 로그인 정상 동작 테스트 (4.74s)

@@ -1,9 +1,0 @@
-2025-12-12 12:59:03,110 - INFO - ====== WebDriver manager ======
-2025-12-12 12:59:03,216 - INFO - Get LATEST chromedriver version for google-chrome
-2025-12-12 12:59:03,280 - INFO - Get LATEST chromedriver version for google-chrome
-2025-12-12 12:59:03,326 - INFO - Driver [/Users/myeongju/.wdm/drivers/chromedriver/mac64/143.0.7499.42/chromedriver-mac-arm64/chromedriver] found in cache
-2025-12-12 12:59:04,219 - INFO - ============================================================
-2025-12-12 12:59:04,219 - INFO - TEST START: 회원가입 - 이미 가입된 이메일 입력 시 에러 메시지 확인
-2025-12-12 12:59:04,219 - INFO - ============================================================
-2025-12-12 12:59:06,476 - INFO - ▶ 세션 초기화
-2025-12-12 12:59:08,233 - INFO - ✓ PASSED: 회원가입 - 이미 가입된 이메일 입력 시 에러 메시지 확인 (4.01s)
