@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from pages.login_page import LoginPage
 from pages.chat_page import ChatPage
+from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from utils.driver import get_driver
 from utils.helper import log_test_start
 
@@ -42,7 +43,10 @@ def test_upload_image():
         assert os.path.exists(FILE_PATH), f"업로드 파일이 존재하지 않습니다: {FILE_PATH}"
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # #플러스 버튼 선택, 파일 업로드 메뉴 클릭
         chat_page.puls_Btn()

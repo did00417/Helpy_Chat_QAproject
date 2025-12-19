@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
 from pages.chat_page import ChatPage
+from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from utils.driver import get_driver
 from utils.helper import (
     log_test_start,
@@ -23,7 +24,10 @@ def test_chat_update():
     start_time = time.time()
     
     try:
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         chat_page.send_message("홍길동에 대해 5줄 이내로 알려줘")
         chat_page.wait_for_ai_reply()
         

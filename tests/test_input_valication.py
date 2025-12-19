@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
 from pages.chat_page import ChatPage
+from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from utils.driver import get_driver
 from utils.helper import (
     log_test_start,
@@ -27,7 +28,10 @@ def test_blank():
 
     try:
         # 1. 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 2.  채팅 입력창에 "   " 공백(스페이스바) 입력 & 전송
         chat_page.input_chat_message("    ")
@@ -61,7 +65,10 @@ def test_long_str():
 
     try:
         # 1. 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 2.  A 200자 입력
         long_str = "A" * 200

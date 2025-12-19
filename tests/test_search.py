@@ -24,7 +24,10 @@ def test_search_bar():
     try:
         #로그인
         print("로그인 시도")
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         #검색 버튼 클릭
         print("검색 버튼 클릭")
@@ -55,7 +58,10 @@ def test_history_click():
     
     try:
         #로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         #검색 버튼 클릭
         search_page.magnifier_click()
@@ -103,7 +109,10 @@ def test_search_history_no_result():
     
     try:
         #로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         #검색 버튼 클릭
         search_page.magnifier_click()
@@ -144,7 +153,10 @@ def test_search_history():
     
     try:
         #로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         #검색 버튼 클릭
         search_page.magnifier_click()

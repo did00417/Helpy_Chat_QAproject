@@ -172,7 +172,7 @@ class ToolPage:
             )
         return downlord_btn
     
-    # 251219 퀴즈 생성 작업 코드 미완성
+    # 251219 퀴즈 생성 작업 코드 완성
     def input_quiz_content(self, quiz_type:int, quiz_level:int, title: str):
         
         option_type_select = self.wait.until(

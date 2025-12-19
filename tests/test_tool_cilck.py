@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
 from pages.tool_page import ToolPage
+from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from utils.driver import get_driver
 from utils.helper import (
     log_test_start,
@@ -30,7 +31,10 @@ def test_click_detail_note():
         log_test_start(test_name)
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 도구 아이콘 클릭
         tool_page.click_tool()
@@ -67,7 +71,10 @@ def test_click_behavior_summary():
         log_test_start(test_name)
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 도구 아이콘 클릭
         tool_page.click_tool()
@@ -104,7 +111,10 @@ def test_click_lesson_plan():
         log_test_start(test_name)
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 도구 아이콘 클릭
         tool_page.click_tool()
@@ -141,7 +151,10 @@ def test_click_ppt_generation():
         log_test_start(test_name)
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 도구 아이콘 클릭
         tool_page.click_tool()
@@ -178,7 +191,10 @@ def test_click_qize():
         log_test_start(test_name)
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 도구 아이콘 클릭
         tool_page.click_tool()

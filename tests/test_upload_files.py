@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from pages.login_page import LoginPage
-from utils.driver import (get_driver)
+from utils.driver import get_driver
 from utils.helper import (
     save_screenshot,
     wait_for_url_contains,

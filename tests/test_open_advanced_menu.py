@@ -2,12 +2,10 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from pages.login_page import LoginPage
+from utils.driver import get_driver
+from utils.helper import save_screenshot
 
-from utils import (
-    get_driver,
-    save_screenshot,
-    login,
-)
 
 BASE_URL = "https://qaproject.elice.io/ai-helpy-chat"
 
@@ -22,7 +20,12 @@ def test_login_and_open_plus_menu(driver):
     wait = WebDriverWait(driver, 10)
 
     # 1. 로그인 수행 (공통 함수 사용)
-    login(driver, "qa3team0501@elicer.com", "team05fighting!")
+    login_page = LoginPage(driver)
+    driver.get(BASE_URL)
+    login_page.login(
+        email="qa3team0501@elicer.com",
+        password="team05fighting!"
+    )
 
     # 2. URL 확인 (간단 버전)
     short_wait = WebDriverWait(driver, 4)

@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
 from pages.tool_page import ToolPage
+from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from utils.driver import get_driver
 from utils.helper import (
     BASE_URL,
@@ -12,7 +13,7 @@ from utils.helper import (
 
 '''
 ===========================
-테스트 케이스:TC-TO-005~TC-TO-007 완료(5 6 합침)
+테스트 케이스:TC-TO-009~TC-TO-011 완료(9,10 합침)
 코드 작성자: 양정은
 ===========================
 '''
@@ -32,7 +33,10 @@ def test_quiz_generation():
         log_test_start(test_name)
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 도구 아이콘 클릭
         tool_page.click_tool()
@@ -87,7 +91,10 @@ def test_quiz_regenerate_disabled_without_subject():
         log_test_start(test_name)
         
         # 로그인
-        login_page.login()
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
         
         # 도구 아이콘 클릭
         tool_page.click_tool()

@@ -2,8 +2,8 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
-from utils import get_driver, save_screenshot
+from utils.driver import get_driver
+from utils.helper import  save_screenshot
 
 # 테스트 ID : TC-CA-003
 BASE_URL = "https://qaproject.elice.io/ai-helpy-chat"
