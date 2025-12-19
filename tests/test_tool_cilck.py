@@ -162,7 +162,43 @@ def test_click_ppt_generation():
 
     finally:
         driver.quit()       
+        
+def test_click_qize():
+    test_name = "AI 헬피챗 퀴즈 생성 클릭 테스트"
+    
+    driver = get_driver()
+    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    start_time = time.time()
+    
+    login_page = LoginPage(driver)
+    tool_page = ToolPage(driver)
+    
+    try:
+        #테스트 시작
+        log_test_start(test_name)
+        
+        # 로그인
+        login_page.login()
+        
+        # 도구 아이콘 클릭
+        tool_page.click_tool()
+        
+        # Qize 클릭
+        tool_page.open_qize_card()
+        
+        time.sleep(3)
+        
+        # Qize 메뉴 클릭 후 검증
+        assert tool_page.get_qize()
+        
+    except Exception as e:
+        print("코드의 작동이 비정상적입니다.")
+        save_screenshot(driver, "get_qize")
+        log_test_failure(test_name, str(e), time.time() - start_time)
+        raise e
 
+    finally:
+        driver.quit()   
       
         
           
