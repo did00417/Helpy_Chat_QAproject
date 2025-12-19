@@ -1,3 +1,69 @@
+# TC-ME-001
+# 로그인 정상 동작 테스트 (POM)
+
+import time
+from selenium.webdriver.support import expected_conditions as EC
+
+from utils.helper import (
+    BASE_URL,
+    get_wait,
+    clear_session,
+    log_test_start,
+)
+
+from pages.login_page import LoginPage
+
+
+def test_login_success(driver):
+    test_name = "로그인 정상 동작 테스트 (POM)"
+    log_test_start(test_name)
+
+    # -----------------------------------
+    # 1) 페이지 진입 + 세션 초기화
+    # -----------------------------------
+    driver.get(BASE_URL) 
+    driver.maximize_window()
+    time.sleep(1)
+
+    clear_session(driver)
+    time.sleep(1)
+
+    wait = get_wait(driver)
+
+    # -----------------------------------
+    # 2) 로그인 수행 (Page Object)
+    # -----------------------------------
+    login_page = LoginPage(driver)
+    login_page.login(
+        email="qa3team0501@elicer.com",
+        password="team05fighting!"
+    )
+
+    # -----------------------------------
+    # 3) 로그인 성공 검증
+    # -----------------------------------
+    wait.until(EC.url_contains("/ai-helpy-chat"))
+    assert "/ai-helpy-chat" in driver.current_url, \
+        "로그인 후 메인 페이지로 이동하지 못했습니다."
+
+    print("✅ 로그인 성공")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # #TC-ME-001
 
 # import time
@@ -133,53 +199,3 @@
 #         print(f"❌ 로그인 실패")
 #         raise
 
-
-# TC-ME-001
-# 로그인 정상 동작 테스트 (POM)
-
-import time
-from selenium.webdriver.support import expected_conditions as EC
-
-from utils.helper import (
-    BASE_URL,
-    get_wait,
-    clear_session,
-    log_test_start,
-)
-
-from pages.login_page import LoginPage
-
-
-def test_login_success(driver):
-    test_name = "로그인 정상 동작 테스트 (POM)"
-    log_test_start(test_name)
-
-    # -----------------------------------
-    # 1) 페이지 진입 + 세션 초기화
-    # -----------------------------------
-    driver.get(BASE_URL)
-    driver.maximize_window()
-    time.sleep(1)
-
-    clear_session(driver)
-    time.sleep(1)
-
-    wait = get_wait(driver)
-
-    # -----------------------------------
-    # 2) 로그인 수행 (Page Object)
-    # -----------------------------------
-    login_page = LoginPage(driver)
-    login_page.login(
-        email="qa3team0501@elicer.com",
-        password="team05fighting!"
-    )
-
-    # -----------------------------------
-    # 3) 로그인 성공 검증
-    # -----------------------------------
-    wait.until(EC.url_contains("/ai-helpy-chat"))
-    assert "/ai-helpy-chat" in driver.current_url, \
-        "로그인 후 메인 페이지로 이동하지 못했습니다."
-
-    print("✅ 로그인 성공")
