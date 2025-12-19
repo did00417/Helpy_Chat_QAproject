@@ -102,7 +102,7 @@ class ToolPage:
     )
 
 #--------------------------------------------------------
-
+# PPT 입력칸 작성 메서드
     def input_ppt_content(self, title: str, instructions:str , slides:int, section:int):
         
         ppt_title_input = self.driver.find_element(By.NAME, "topic")
@@ -139,6 +139,7 @@ class ToolPage:
             "//button[@type='submit' and @form='tool-factory-create_pptx' and normalize-space()='다시 생성']"
             ).click()
     
+    # 다시 생성 버튼 클릭 메서드
     def again_generate_click(self):
         """
         '결과 다시 생성하기' 모달의 '다시 생성' 버튼 클릭
@@ -172,29 +173,72 @@ class ToolPage:
         return downlord_btn
     
     # 251219 퀴즈 생성 작업 코드 미완성
-    
-    def input_qize_content(self, qize_type:int, qize_level:int, title: str):
+    def input_quiz_content(self, quiz_type:int, quiz_level:int, title: str):
         
-        qize_type_input = self.driver.find_element(By.NAME, "quiz_configs.0.option_type")
-        qize_type_input.click()
+        option_type_select = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.ID, "mui-component-select-quiz_configs.0.option_type")
+                )
+            )
+        option_type_select.click()
+        
         time.sleep(1)
-        qize_type_click = self.driver.find_element(By.CSS_SELECTOR,f'li[role="option"][data-value="{qize_type}"]')
-        qize_type_click.click()
+        option = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, f'li[role="option"][data-value="{quiz_type}"]')
+                )
+        )
+        option.click()
         
-        qize_level_input = self.driver.find_element(By.NAME, "quiz_configs.0.difficulty")
-        qize_level_input.click()
-        qize_level_click = self.driver.find_element(By.CSS_SELECTOR,f'li[role="listbox"][data-value="Level{qize_level}"]')
-        qize_level_click.click()
+        level_select = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.ID, "mui-component-select-quiz_configs.0.difficulty")
+                )
+            )
+        level_select.click()
         
-        qize_title_input = self.driver.find_element(By.NAME, "topic")
+        difficulty_option = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, f'li[role="option"][data-value="Level{quiz_level}"]')
+            )
+        )
+        difficulty_option.click()
+        
+        qize_title_input = self.driver.find_element(By.NAME, "content")
         qize_title_input.send_keys(Keys.CONTROL, "a")
         qize_title_input.send_keys(Keys.BACKSPACE)
         qize_title_input.send_keys(title)
         
-        return (qize_type_input, qize_level_input, qize_title_input)
+        return (quiz_type, quiz_level, qize_title_input)
     
     def get_quiz_generate_button(self):
         return self.driver.find_element(
-            By.XPATH, 
-            "//button[@type='submit' and @form=tool-factory-create_quiz_from_context' and normalize-space()='자동 생성']"
+            By.CSS_SELECTOR, 'button[type="submit"][form="tool-factory-create_quiz_from_context"]'
             ).click()
+        
+    def again_quiz_generate_click(self):
+        """
+        '결과 다시 생성하기' 모달의 '다시 생성' 버튼 클릭
+        """
+        # 모달 내 버튼이 나타날 때까지 대기
+        again_btn = self.wait.until(
+            EC.element_to_be_clickable((
+                By.CSS_SELECTOR, 
+                'div[role="dialog"] button[form="tool-factory-create_quiz_from_context"]'
+            ))
+        )
+        again_btn.click()
+        return again_btn
+        
+    #퀴즈 생성 결과 검증
+    def quiz_result_assert(self, timeout=180):
+        quiz_result = WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//div[@data-panel="output"]//p[contains(text(), "퀴즈를 생성")]'
+                    )
+                )
+            )
+        return quiz_result
+        
