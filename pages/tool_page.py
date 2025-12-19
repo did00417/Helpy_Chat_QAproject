@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -68,7 +69,7 @@ class ToolPage:
         )
     )
     
-    # # PPT 생성 카드 클릭
+    # PPT 생성 카드 클릭
     def open_ppt_generation_card(self):
         ppt_Btn = self.driver.find_element(
             By.CSS_SELECTOR, 
@@ -83,9 +84,25 @@ class ToolPage:
             (By.ID, "tool-factory-create_pptx")
         )
     )
+    
+    # 퀴즈 생성 클릭
+    def open_qize_card(self):
+        qize_Btn = self.driver.find_element(
+            By.CSS_SELECTOR, 
+            '[data-testid="square-questionIcon"]'
+            )
+        qize_Btn.click()
+        return qize_Btn
+    
+    def get_qize(self):
+        return self.wait.until(
+            EC.presence_of_element_located(
+            (By.ID, "tool-factory-create_quiz_from_context")
+        )
+    )
 
 #--------------------------------------------------------
-
+# PPT 입력칸 작성 메서드
     def input_ppt_content(self, title: str, instructions:str , slides:int, section:int):
         
         ppt_title_input = self.driver.find_element(By.NAME, "topic")
@@ -122,6 +139,7 @@ class ToolPage:
             "//button[@type='submit' and @form='tool-factory-create_pptx' and normalize-space()='다시 생성']"
             ).click()
     
+    # 다시 생성 버튼 클릭 메서드
     def again_generate_click(self):
         """
         '결과 다시 생성하기' 모달의 '다시 생성' 버튼 클릭
@@ -153,8 +171,74 @@ class ToolPage:
                 )
             )
         return downlord_btn
-            
-
-            
-            
+    
+    # 251219 퀴즈 생성 작업 코드 미완성
+    def input_quiz_content(self, quiz_type:int, quiz_level:int, title: str):
+        
+        option_type_select = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.ID, "mui-component-select-quiz_configs.0.option_type")
+                )
+            )
+        option_type_select.click()
+        
+        time.sleep(1)
+        option = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, f'li[role="option"][data-value="{quiz_type}"]')
+                )
+        )
+        option.click()
+        
+        level_select = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.ID, "mui-component-select-quiz_configs.0.difficulty")
+                )
+            )
+        level_select.click()
+        
+        difficulty_option = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, f'li[role="option"][data-value="Level{quiz_level}"]')
+            )
+        )
+        difficulty_option.click()
+        
+        qize_title_input = self.driver.find_element(By.NAME, "content")
+        qize_title_input.send_keys(Keys.CONTROL, "a")
+        qize_title_input.send_keys(Keys.BACKSPACE)
+        qize_title_input.send_keys(title)
+        
+        return (quiz_type, quiz_level, qize_title_input)
+    
+    def get_quiz_generate_button(self):
+        return self.driver.find_element(
+            By.CSS_SELECTOR, 'button[type="submit"][form="tool-factory-create_quiz_from_context"]'
+            ).click()
+        
+    def again_quiz_generate_click(self):
+        """
+        '결과 다시 생성하기' 모달의 '다시 생성' 버튼 클릭
+        """
+        # 모달 내 버튼이 나타날 때까지 대기
+        again_btn = self.wait.until(
+            EC.element_to_be_clickable((
+                By.CSS_SELECTOR, 
+                'div[role="dialog"] button[form="tool-factory-create_quiz_from_context"]'
+            ))
+        )
+        again_btn.click()
+        return again_btn
+        
+    #퀴즈 생성 결과 검증
+    def quiz_result_assert(self, timeout=180):
+        quiz_result = WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//div[@data-panel="output"]//p[contains(text(), "퀴즈를 생성")]'
+                    )
+                )
+            )
+        return quiz_result
         

@@ -1,10 +1,10 @@
-from json import tool
 import time
 from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
 from pages.tool_page import ToolPage
 from utils.driver import get_driver
 from utils.helper import (
+    BASE_URL,
     log_test_start,
     log_test_failure,
     save_screenshot
@@ -12,16 +12,16 @@ from utils.helper import (
 
 '''
 ===========================
-테스트 케이스:TC-TO-005~TC-TO-007 완성 (5, 6합침))
+테스트 케이스:TC-TO-005~TC-TO-007 완료(5 6 합침)
 코드 작성자: 양정은
 ===========================
 '''
 
-def test_ppt_generation():
-    test_name = "AI 헬피챗 수업 지도안 클릭 테스트"
+def test_quiz_generation():
+    test_name = "AI 헬피챗 퀴즈 생성 테스트"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
     start_time = time.time()
     
     login_page = LoginPage(driver)
@@ -38,24 +38,28 @@ def test_ppt_generation():
         tool_page.click_tool()
         
         # PPT 생성 클릭
-        tool_page.open_ppt_generation_card()
+        tool_page.open_qize_card()
         
         # PPT 생성에 필요한 내용 입력
-        ppt_title = "인공지능 요구사항 종류"
-        ppt_instruc = "인공지능 서비스 요구사항 도출 및 명세화에서 인공지는 서비스 요구사항 도출과 인공지능 서비스 요구사항 명세화에 대해서 이미지와 도표를 추가해서 중학생이 이해 할 수 있는 수준으로 설명"
-        ppt_slide = 3
-        ppt_section =  2
+        '''
+        객관식 단일 선택 = 0   난이도 상 = 3
+        객관식 복수 선택 = 1   난이도 중 = 2
+        주관식 = 3             난이도 하 = 1
+        '''
+        quiz_type = 3
+        quiz_level = 1
+        quiz_title = "인공지능 서비스 요구사항 도출 및 명세화에서 인공지는 서비스 요구사항 도출과 인공지능 서비스 요구사항 명세화에 대해서  퀴즈 10개를 만들어주고, 정답에 대한 설명도 추가해줘."
         
-        tool_page.input_ppt_content(ppt_title, ppt_instruc, ppt_slide, ppt_section)
+        tool_page.input_quiz_content(quiz_type, quiz_level, quiz_title)
         
         time.sleep(2)
         
-        tool_page.get_generate_button()
-        tool_page.again_generate_click()
+        tool_page.get_quiz_generate_button()
+        tool_page.again_quiz_generate_click()
         
-        time.sleep(2)
+        time.sleep(5)
         
-        assert tool_page.wait_downlord_button()   
+        assert tool_page.quiz_result_assert(), "퀴즈 생성에 실패했습니다."
    
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
@@ -66,8 +70,9 @@ def test_ppt_generation():
     finally:
         driver.quit()
         
+        
 # 필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증 
-def test_regenerate_disabled_without_subject():
+def test_quiz_regenerate_disabled_without_subject():
     test_name = "필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증"
     
     driver = get_driver()
@@ -88,15 +93,20 @@ def test_regenerate_disabled_without_subject():
         tool_page.click_tool()
         
         # PPT 생성 클릭
-        tool_page.open_ppt_generation_card()
+        tool_page.open_qize_card()
         
-        # PPT 생성에 필요한 내용 입력
-        ppt_title = ""
-        ppt_instruc = "인공지능 서비스 요구사항 도출 및 명세화에서 인공지는 서비스 요구사항 도출과 인공지능 서비스 요구사항 명세화에 대해서 이미지와 도표를 추가해서 중학생이 이해 할 수 있는 수준으로 설명"
-        ppt_slide = 5
-        ppt_section =  1
+         # PPT 생성에 필요한 내용 입력
+        '''
+        객관식 단일 선택 = 0   난이도 상 = 3
+        객관식 복수 선택 = 1   난이도 중 = 2
+        주관식 = 3             난이도 하 = 1
+        '''
+        quiz_type = 0
+        quiz_level = 2
+        quiz_title = ""
         
-        tool_page.input_ppt_content(ppt_title, ppt_instruc, ppt_slide, ppt_section)
+        tool_page.input_quiz_content(quiz_type, quiz_level, quiz_title)
+        
         time.sleep(2)
         
         assert not tool_page.again_btn_assert().is_enabled()
