@@ -9,7 +9,8 @@ import logging
 from datetime import datetime
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from utils.driver import (get_driver, get_wait)
+from utils.driver import get_driver, get_wait
+
 
 
 
