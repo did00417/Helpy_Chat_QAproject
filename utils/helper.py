@@ -9,6 +9,7 @@ import logging
 from datetime import datetime
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from utils.driver import (get_driver, get_wait)
 
 
@@ -168,3 +169,8 @@ def wait_for_error_message(driver, text: str, timeout: int = 5):
     return get_wait(driver, timeout).until(
         EC.visibility_of_element_located((By.XPATH, xpath))
     )
+    
+def wait_for_url_contains(driver, url_part: str, timeout: int = 10):
+    """Wait for URL to contain specified string."""
+    wait = WebDriverWait(driver, timeout)
+    return wait.until(EC.url_contains(url_part))

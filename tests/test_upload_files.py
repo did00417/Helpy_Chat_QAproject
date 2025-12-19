@@ -4,11 +4,10 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
-from utils import (
-    get_driver,
+from pages.login_page import LoginPage
+from utils.driver import (get_driver)
+from utils.helper import (
     save_screenshot,
-    login,
     wait_for_url_contains,
 )
 
@@ -34,9 +33,10 @@ def driver():
 
 def test_login_then_upload_pdf_and_regenerate(driver):
     wait = WebDriverWait(driver, 10)
-
+    
+    login_page = LoginPage(driver)
     # 1. 로그인 수행 (공통 함수 사용)
-    login(driver, TEST_LOGIN_ID, TEST_LOGIN_PASSWORD)
+    login_page.login()
 
     # 2. 로그인 후 예상 URL로 이동했는지 확인 (최대 10초)
     try:
@@ -48,9 +48,9 @@ def test_login_then_upload_pdf_and_regenerate(driver):
             f"현재 URL: {current}"
         )
 
-    # 3. 채팅 입력창 쪽의 + 버튼 찾기 (data-icon="plus")
+    # 3. 채팅 입력창 쪽의 + 버튼 찾기 (data-icon="plus") be 추가로 넣음
     plus_button = wait.until(
-        EC.element_to_clickable((By.CSS_SELECTOR, '[data-icon="plus"]'))
+        EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-icon="plus"]'))
     )
     assert plus_button is not None, "+ 버튼을 찾지 못했습니다."
 

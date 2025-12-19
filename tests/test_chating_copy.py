@@ -10,6 +10,7 @@ from utils.helper import (
 )
 
 # 테스트 케이스 TC-CB-001, TC-CB-008 완료
+# 작성자 양정은
 
 
 def test_ai_chat_reply():
