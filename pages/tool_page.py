@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -68,7 +69,7 @@ class ToolPage:
         )
     )
     
-    # # PPT 생성 카드 클릭
+    # PPT 생성 카드 클릭
     def open_ppt_generation_card(self):
         ppt_Btn = self.driver.find_element(
             By.CSS_SELECTOR, 
@@ -81,6 +82,22 @@ class ToolPage:
         return self.wait.until(
             EC.presence_of_element_located(
             (By.ID, "tool-factory-create_pptx")
+        )
+    )
+    
+    # 퀴즈 생성 클릭
+    def open_qize_card(self):
+        qize_Btn = self.driver.find_element(
+            By.CSS_SELECTOR, 
+            '[data-testid="square-questionIcon"]'
+            )
+        qize_Btn.click()
+        return qize_Btn
+    
+    def get_qize(self):
+        return self.wait.until(
+            EC.presence_of_element_located(
+            (By.ID, "tool-factory-create_quiz_from_context")
         )
     )
 
@@ -153,8 +170,31 @@ class ToolPage:
                 )
             )
         return downlord_btn
-            
-
-            
-            
+    
+    # 251219 퀴즈 생성 작업 코드 미완성
+    
+    def input_qize_content(self, qize_type:int, qize_level:int, title: str):
         
+        qize_type_input = self.driver.find_element(By.NAME, "quiz_configs.0.option_type")
+        qize_type_input.click()
+        time.sleep(1)
+        qize_type_click = self.driver.find_element(By.CSS_SELECTOR,f'li[role="option"][data-value="{qize_type}"]')
+        qize_type_click.click()
+        
+        qize_level_input = self.driver.find_element(By.NAME, "quiz_configs.0.difficulty")
+        qize_level_input.click()
+        qize_level_click = self.driver.find_element(By.CSS_SELECTOR,f'li[role="listbox"][data-value="Level{qize_level}"]')
+        qize_level_click.click()
+        
+        qize_title_input = self.driver.find_element(By.NAME, "topic")
+        qize_title_input.send_keys(Keys.CONTROL, "a")
+        qize_title_input.send_keys(Keys.BACKSPACE)
+        qize_title_input.send_keys(title)
+        
+        return (qize_type_input, qize_level_input, qize_title_input)
+    
+    def get_quiz_generate_button(self):
+        return self.driver.find_element(
+            By.XPATH, 
+            "//button[@type='submit' and @form=tool-factory-create_quiz_from_context' and normalize-space()='자동 생성']"
+            ).click()
