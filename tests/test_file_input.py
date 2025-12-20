@@ -7,7 +7,7 @@ from pages.login_page import LoginPage
 from pages.chat_page import ChatPage
 from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from utils.driver import get_driver
-from utils.helper import log_test_start
+from utils.helper import log_test_start, log_test_failure, save_screenshot
 
 # __file__ => 실행 시킨 파이썬 파일
 # qaproject_team5/tests/test_file_input.py
@@ -34,12 +34,7 @@ def test_upload_image():
     login_page = LoginPage(driver)
     chat_page = ChatPage(driver)
 
-    try:
-        # 1. 파일 업로드 준비
-        CURRENT_DIR = os.path.dirname(__file__)
-        FILE_DIR = os.path.join(CURRENT_DIR, "test-data")
-        FILE_PATH = os.path.join(FILE_DIR, "duck.jpg")
-
+    try:        
         assert os.path.exists(FILE_PATH), f"업로드 파일이 존재하지 않습니다: {FILE_PATH}"
         
         # 로그인
@@ -49,29 +44,29 @@ def test_upload_image():
     )
         
         # #플러스 버튼 선택, 파일 업로드 메뉴 클릭
-        chat_page.puls_Btn()
+        chat_page.plus_Btn()
         chat_page.file_upload()
         time.sleep(0.5)
 
-        # 숨겨진 input[type=file] 찾기
-        print("파일 input 요소 찾기")
-        file_input = wait.until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type="file"]')))
-        file_input.send_keys(FILE_PATH)
-        print("사진 업로드 완료")
+        # 파일 선택 창에서 파일 선택
+        chat_page.file_upload_select(FILE_PATH)
 
         time.sleep(2)
-
-        # 전송 버튼 대기 후 클릭
-        send_button = wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, '//*[@data-testid="arrow-upIcon"]/ancestor::button')
-            )
-        )
-        send_button.click()
+        
+        # 업로드 완료 후 전송 버튼 클릭   
+        chat_page.click_upload_send_button()
         print("클릭 완료")
         
         time.sleep(2)
+
+        assert chat_page.uploaded_thumbnail_assert(), "이미지 썸네일이 표시되지 않았습니다"
+        print("이미지 업로드 테스트 성공")
+        
+    except Exception as e:
+        print("코드의 작동이 비정상적입니다.")
+        save_screenshot(driver, "chat_test_failed")
+        log_test_failure(test_name, str(e), time.time() - start_time)
+        raise e
 
     finally:
         driver.quit()
