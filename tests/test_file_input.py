@@ -22,6 +22,7 @@ FILE_DIR = os.path.join(CURRENT_DIR, "test-data")
 
 
 # 테스트 케이스 TC-CB-002 완료 작성자: 양정은
+# 251221 수정 완료
 def test_upload_image():
     test_name = "AI 헬피챗 파일 첨부"
     log_test_start(test_name)

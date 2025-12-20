@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
+# 채팅 페이지 관련 공통 기능 클래스
 
 class ChatPage:
     """채팅 페이지 관련 공통 기능 클래스"""

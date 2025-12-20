@@ -4,6 +4,7 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from pages.login_page import LoginPage
 from utils.driver import get_driver
 from utils.helper import (
@@ -14,10 +15,6 @@ from utils.helper import (
 # 테스트 ID = TC-CA-002
 
 BASE_URL = "https://qaproject.elice.io/ai-helpy-chat"
-
-# 테스트에 사용할 로그인 정보
-TEST_LOGIN_ID = "qa3team0501@elicer.com"
-TEST_LOGIN_PASSWORD = "team05fighting!"
 
 # 현재 이 파일(test_upload_files.py)이 있는 폴더 기준으로 PDF 파일 경로 설정
 BASE_DIR = os.path.dirname(__file__)                 # .../pytest-exam/tests
@@ -36,7 +33,10 @@ def test_login_then_upload_pdf_and_regenerate(driver):
     
     login_page = LoginPage(driver)
     # 1. 로그인 수행 (공통 함수 사용)
-    login_page.login()
+    login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD,
+    )
 
     # 2. 로그인 후 예상 URL로 이동했는지 확인 (최대 10초)
     try:
