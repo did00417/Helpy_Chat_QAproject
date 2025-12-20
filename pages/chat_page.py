@@ -65,7 +65,7 @@ class ChatPage:
         value = self.paste_to_input_box(reply_element)
         return value
     
-    def puls_Btn(self):
+    def plus_Btn(self):
         '''플러스 버튼 클릭'''
         plusBtn = self.wait.until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-testid="plusIcon"]'))
@@ -82,6 +82,36 @@ class ChatPage:
                 )))
         file_upload_Btn.click()
         return file_upload_Btn
+    
+    def file_upload_select(self, file_path: str):
+        '''파일 업로드 - 숨겨진 input[type=file] 요소에 파일 경로 전송'''
+        file_input = self.wait.until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'input[type="file"]'))
+        )
+        file_input.send_keys(file_path)
+        return file_input
+    
+    def click_upload_send_button(self):
+        '''파일 업로드 후 전송 버튼 클릭'''
+        send_button = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, '//*[@data-testid="arrow-upIcon"]/ancestor::button')
+            )
+        )
+        send_button.click()
+        return send_button
+    
+    def uploaded_thumbnail_assert(self):
+        '''업로드된 이미지 썸네일 표시 여부 확인'''
+        thumbnail = self.wait.until(
+            EC.visibility_of_element_located(
+                (
+                    By.CSS_SELECTOR,
+                    'div[data-variant="user"][type="image"] img'
+                )
+            )
+        )
+        return thumbnail.is_displayed()
     
     # 수정내용 관련 메서드
     def hover_update_message(self):
@@ -110,5 +140,3 @@ class ChatPage:
         update_send_Btn.click()
         return update_send_Btn
     
-    def test(self):
-        print("안녕하세요")
