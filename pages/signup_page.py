@@ -1,3 +1,5 @@
+from selenium.webdriver.common.by import By
+
 class SignupPage:
     """회원가입 페이지 관련 공통 기능 클래스"""
 
