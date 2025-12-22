@@ -124,6 +124,7 @@ def test_login_then_generate_image_flow(driver):
             )
         )
         assert generated_image.is_displayed(), "생성된 이미지(img)가 화면에 보이지 않습니다."
+        print("✅ 이미지 생성 성공")
 
     except Exception:
         # 실패 시 스크린샷 저장 후 예외 다시 던지기

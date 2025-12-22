@@ -114,7 +114,7 @@ class ChatPage:
         )
         return thumbnail.is_displayed()
     
-    # 수정내용 관련 메서드
+    # 수정내용 관련 메서드 - 사용 안함
     def hover_update_message(self):
         update_hover = self.driver.find_element(By.XPATH,
         '//span[@data-status="complete" and contains(text(), "홍길동")]/ancestor::div[contains(@class, "MuiPaper-root")]')

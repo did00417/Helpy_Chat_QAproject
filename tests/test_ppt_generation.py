@@ -62,7 +62,7 @@ def test_ppt_generation():
         time.sleep(2)
         
         assert tool_page.wait_downlord_button()   
-   
+        print("✅ PPT 생성 성공, 다운로드 버튼 표시 확인")
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
         save_screenshot(driver, "get_ppt_generation")
@@ -110,7 +110,7 @@ def test_regenerate_disabled_without_subject():
         time.sleep(2)
         
         assert not tool_page.again_btn_assert().is_enabled()
-   
+        print("✅ 필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증 성공")
    
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")

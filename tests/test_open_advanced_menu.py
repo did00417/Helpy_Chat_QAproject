@@ -41,7 +41,7 @@ def test_login_and_open_plus_menu(driver):
         EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-icon="plus"]'))
     )
     assert plus_button is not None, "+ 버튼을 찾지 못했습니다."
-
+    print("✅ 로그인 및 + 버튼 찾기 성공")
     # 4. + 버튼 클릭
     plus_button.click()
 

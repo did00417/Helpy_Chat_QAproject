@@ -41,11 +41,11 @@ def test_quiz_generation():
         
         # 도구 아이콘 클릭
         tool_page.click_tool()
+
+        # 퀴즈 생성 클릭
+        tool_page.open_quiz_card()
         
-        # PPT 생성 클릭
-        tool_page.open_qize_card()
-        
-        # PPT 생성에 필요한 내용 입력
+        # 퀴즈 생성에 필요한 내용 입력
         '''
         객관식 단일 선택 = 0   난이도 상 = 3
         객관식 복수 선택 = 1   난이도 중 = 2
@@ -65,7 +65,7 @@ def test_quiz_generation():
         time.sleep(5)
         
         assert tool_page.quiz_result_assert(), "퀴즈 생성에 실패했습니다."
-   
+        print("✅ 퀴즈 생성 성공")
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
         save_screenshot(driver, "get_ppt_generation")
@@ -100,9 +100,9 @@ def test_quiz_regenerate_disabled_without_subject():
         
         # 도구 아이콘 클릭
         tool_page.click_tool()
-        
-        # PPT 생성 클릭
-        tool_page.open_qize_card()
+
+        # 퀴즈 생성 클릭
+        tool_page.open_quiz_card()
         
          # PPT 생성에 필요한 내용 입력
         '''
@@ -119,7 +119,7 @@ def test_quiz_regenerate_disabled_without_subject():
         time.sleep(2)
         
         assert not tool_page.again_btn_assert().is_enabled()
-   
+        print("✅ 퀴즈 필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증 성공")
    
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")

@@ -81,7 +81,7 @@ def test_history_click():
         print(len(history_list))
         
         assert len(history_list) > 0, "클릭할 히스토리 항목이 없습니다."
-        
+        print("✅ 히스토리 항목 존재 확인")
         # 첫 번째 히스토리 클릭
         history_list2 = search_page.history_list()
         history_list2[0].click()
@@ -90,7 +90,7 @@ def test_history_click():
         WebDriverWait(driver, 5).until(
             EC.url_contains("/ai-helpy-chat/chats/")
         )
-        
+        print("✅ 히스토리 목록 클릭 및 채팅 화면 전환 성공")
     
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
@@ -134,6 +134,7 @@ def test_search_history_no_result():
         print(f"히스토리 목록의 개수: {history_list}")
          
         assert history_list == 0, "검색 결과가 확인됩니다."
+        print("✅ 검색어에 대한 결과가 없는 경우 성공")
 
         
     except Exception as e:
@@ -179,6 +180,7 @@ def test_search_history():
         print(f"히스토리 목록의 개수: {history_list}")
          
         assert history_list > 0, "검색 결과가 없습니다."
+        print("✅ 히스토리 목록 확인 성공")
 
         
     except Exception as e:

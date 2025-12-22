@@ -43,6 +43,7 @@ def test_ai_chat_reply():
         value = chat_page.copy_and_paste(reply_element)
         time.sleep(3)
         assert value != "", "복사 결과가 비어 있습니다."
+        print("✅ 복사 성공")
 
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")

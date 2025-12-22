@@ -137,7 +137,7 @@ def test_login_then_search_web_flow(driver):
         # 복사/다시검색 버튼이 실제로 화면에 보이는지 확인
         assert copy_button.is_displayed(), "결과 하단의 복사 버튼(copyIcon)이 보이지 않습니다."
         assert reload_button.is_displayed(), "결과 하단의 다시검색 버튼(arrows-rotateIcon)이 보이지 않습니다."
-
+        print("✅ 웹 검색 결과 표시 성공")
     except Exception:
         save_screenshot(driver, "login_search_web_failed")
         raise

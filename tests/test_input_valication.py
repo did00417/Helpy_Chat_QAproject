@@ -45,7 +45,7 @@ def test_blank():
 
         
         assert not send_button.is_enabled(), "공백만 입력했는데 전송 버튼이 활성화됨"
-        
+        print("✅ 공백 입력 테스트 성공")
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
         save_screenshot(driver, "blank_Test")
@@ -79,6 +79,7 @@ def test_long_str():
         
         send_button = chat_page.send_button_assert()
         assert send_button.is_enabled(), " 입력 시 전송 버튼이 활성화되지 않음"
+        print("✅ 긴 문자열 입력 성공")
 
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")

@@ -48,6 +48,7 @@ def test_click_detail_note():
         
         # 세부 특기 사항 검증
         assert tool_page.get_detail_note()
+        print("✅ 세부 특기 사항 클릭 성공")
         
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
@@ -89,6 +90,7 @@ def test_click_behavior_summary():
         
         # 행동특성 및 종합의견 페이지 검증
         assert tool_page.get_behavior_summary()
+        print("✅ 행동특성 및 종합의견 클릭 성공")
         
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
@@ -130,6 +132,7 @@ def test_click_lesson_plan():
         
         # 수업 지도안 검증
         assert tool_page.get_lesson_plan()
+        print("✅ 수업 지도안 클릭 성공")
         
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
@@ -171,6 +174,7 @@ def test_click_ppt_generation():
         
         # PPT 생성 메뉴 클릭 후 검증
         assert tool_page.get_ppt_generation()
+        print("✅ PPT 생성 클릭 성공")
         
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")
@@ -206,12 +210,13 @@ def test_click_qize():
         tool_page.click_tool()
         
         # Qize 클릭
-        tool_page.open_qize_card()
+        tool_page.open_quiz_card()
         
         time.sleep(3)
         
         # Qize 메뉴 클릭 후 검증
-        assert tool_page.get_qize()
+        assert tool_page.get_quiz()
+        print("✅ Quiz 클릭 성공")
         
     except Exception as e:
         print("코드의 작동이 비정상적입니다.")

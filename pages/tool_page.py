@@ -86,15 +86,15 @@ class ToolPage:
     )
     
     # 퀴즈 생성 클릭
-    def open_qize_card(self):
-        qize_Btn = self.driver.find_element(
+    def open_quiz_card(self):
+        quiz_Btn = self.driver.find_element(
             By.CSS_SELECTOR, 
             '[data-testid="square-questionIcon"]'
             )
-        qize_Btn.click()
-        return qize_Btn
-    
-    def get_qize(self):
+        quiz_Btn.click()
+        return quiz_Btn
+
+    def get_quiz(self):
         return self.wait.until(
             EC.presence_of_element_located(
             (By.ID, "tool-factory-create_quiz_from_context")
