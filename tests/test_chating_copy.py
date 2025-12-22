@@ -8,6 +8,7 @@ from utils.helper import (
     log_test_start,
     log_test_failure,
     save_screenshot,
+    BASE_URL
 )
 
 # 테스트 케이스 TC-CB-001, TC-CB-008 완료
@@ -19,7 +20,8 @@ def test_ai_chat_reply():
     log_test_start(test_name)
 
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
 
     login_page = LoginPage(driver)

@@ -7,7 +7,8 @@ from utils.driver import get_driver
 from utils.helper import (
     log_test_start,
     log_test_failure,
-    save_screenshot
+    save_screenshot,
+    BASE_URL
     )
 '''
 ===========================
@@ -20,7 +21,8 @@ def test_blank():
     test_name = "AI 헬피챗 공백(스페이스) 테스트"
 
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)
@@ -57,7 +59,8 @@ def test_long_str():
     test_name = "헬피젯 긴 문자열 입력 테스트 테스트 코드: TC-CB-011"
 
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)

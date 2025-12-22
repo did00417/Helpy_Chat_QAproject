@@ -1,6 +1,5 @@
 import os
 import pytest
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -10,15 +9,14 @@ from utils.driver import get_driver
 from utils.helper import (
     save_screenshot,
     wait_for_url_contains,
+    BASE_URL
 )
 
 # 테스트 ID = TC-CA-002
 
-BASE_URL = "https://qaproject.elice.io/ai-helpy-chat"
-
 # 현재 이 파일(test_upload_files.py)이 있는 폴더 기준으로 PDF 파일 경로 설정
 BASE_DIR = os.path.dirname(__file__)                 # .../pytest-exam/tests
-TEST_PDF_PATH = os.path.join(BASE_DIR, "files", "CPMAI.pdf")  # .../tests/files/CPMAI.pdf
+TEST_PDF_PATH = os.path.join(BASE_DIR, "test-data", "CPMAI-1.pdf")
 
 
 @pytest.fixture
@@ -30,6 +28,8 @@ def driver():
 
 def test_login_then_upload_pdf_and_regenerate(driver):
     wait = WebDriverWait(driver, 10)
+    driver.get(BASE_URL)
+    driver.maximize_window()
     
     login_page = LoginPage(driver)
     # 1. 로그인 수행 (공통 함수 사용)

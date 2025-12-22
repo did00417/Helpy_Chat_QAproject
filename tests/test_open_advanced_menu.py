@@ -4,10 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from pages.login_page import LoginPage
 from utils.driver import get_driver
-from utils.helper import save_screenshot
-
-
-BASE_URL = "https://qaproject.elice.io/ai-helpy-chat"
+from utils.helper import save_screenshot,BASE_URL
 
 @pytest.fixture
 def driver():
@@ -22,6 +19,7 @@ def test_login_and_open_plus_menu(driver):
     # 1. 로그인 수행 (공통 함수 사용)
     login_page = LoginPage(driver)
     driver.get(BASE_URL)
+    driver.maximize_window()
     login_page.login(
         email="qa3team0501@elicer.com",
         password="team05fighting!"

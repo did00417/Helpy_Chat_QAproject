@@ -3,12 +3,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from utils.driver import get_driver
-from utils.helper import save_screenshot
+from utils.helper import save_screenshot, BASE_URL
 
 
 #테스트 ID: TC-CA-004
-
-BASE_URL = "https://qaproject.elice.io/ai-helpy-chat"
 
 # 로그인 정보
 TEST_LOGIN_ID = "qa3team0501@elicer.com"
@@ -27,6 +25,7 @@ def test_login_then_search_web_flow(driver):
 
     # 1, 2. 메인 페이지(로그인 화면)로 이동
     driver.get(BASE_URL)
+    driver.maximize_window()
 
     # 3. 아이디 입력영역 찾기 (name="loginId")
     login_id_input = wait.until(

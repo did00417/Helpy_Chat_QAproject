@@ -8,7 +8,8 @@ from utils.driver import get_driver
 from utils.helper import (
     log_test_start,
     log_test_failure,
-    save_screenshot
+    save_screenshot,
+    BASE_URL
     )
 
 '''
@@ -22,7 +23,8 @@ def test_ppt_generation():
     test_name = "AI 헬피챗 수업 지도안 클릭 테스트"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)
@@ -75,7 +77,8 @@ def test_regenerate_disabled_without_subject():
     test_name = "필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)

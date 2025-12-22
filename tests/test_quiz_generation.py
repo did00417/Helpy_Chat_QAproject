@@ -23,6 +23,7 @@ def test_quiz_generation():
     
     driver = get_driver()
     driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)
@@ -80,7 +81,8 @@ def test_quiz_regenerate_disabled_without_subject():
     test_name = "필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)

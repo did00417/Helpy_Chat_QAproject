@@ -4,12 +4,14 @@ from pages.login_page import LoginPage
 from pages.search_page import SearchPage
 from selenium.webdriver.support.ui import WebDriverWait
 from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
+
 from selenium.webdriver.common.by import By
 from utils.driver import get_driver
 from utils.helper import (
     log_test_start,
     log_test_failure,
     save_screenshot,
+    BASE_URL
 )
 
 # 검색 기능 테스트 케이스 작성: TC-SC-001
@@ -17,7 +19,8 @@ def test_search_bar():
     test_name = "헬피챗 검색창 정상 노출 검증"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)
@@ -51,7 +54,8 @@ def test_history_click():
     test_name = "헬피챗 검색 기능 테스트 - 히스토리 목록 중 하나 선택"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)
@@ -102,7 +106,8 @@ def test_search_history_no_result():
     test_name = "헬피챗 검색 기능 테스트 - 검색어에 대한 결과가 없는 경우"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)
@@ -146,7 +151,8 @@ def test_search_history():
     test_name = "헬피챗 검색 기능 테스트 - 히스토리 목록 확인"
     
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)

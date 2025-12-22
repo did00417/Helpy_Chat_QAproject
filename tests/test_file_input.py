@@ -7,7 +7,7 @@ from pages.login_page import LoginPage
 from pages.chat_page import ChatPage
 from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
 from utils.driver import get_driver
-from utils.helper import log_test_start, log_test_failure, save_screenshot
+from utils.helper import log_test_start, log_test_failure, save_screenshot, BASE_URL
 
 # __file__ => 실행 시킨 파이썬 파일
 # qaproject_team5/tests/test_file_input.py
@@ -28,8 +28,8 @@ def test_upload_image():
     log_test_start(test_name)
 
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
-    wait = WebDriverWait(driver, 10)
+    driver.get(BASE_URL)
+    driver.maximize_window()
     start_time = time.time()
     
     login_page = LoginPage(driver)

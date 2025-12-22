@@ -3,11 +3,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
 from pages.chat_page import ChatPage
 from utils.constants import TEST_LOGIN_ID, TEST_LOGIN_PASSWORD
+
 from utils.driver import get_driver
 from utils.helper import (
     log_test_start,
     log_test_failure,
     save_screenshot,
+    BASE_URL
 )
 
 # 테스트 케이스 TC-CB-015 (보류 -> 수동테스트 진행)
@@ -17,7 +19,8 @@ def test_chat_update():
     log_test_start(test_name)
 
     driver = get_driver()
-    driver.get("https://qaproject.elice.io/ai-helpy-chat")
+    driver.get(BASE_URL)
+    driver.maximize_window()
 
     login_page = LoginPage(driver)
     chat_page = ChatPage(driver)
