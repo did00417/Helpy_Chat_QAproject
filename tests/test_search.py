@@ -14,7 +14,7 @@ from utils.helper import (
     BASE_URL
 )
 
-# 검색 기능 테스트 케이스 작성: TC-SC-001
+# 검색 기능 테스트 케이스 작성: TC-SC-001 작성자 양정은
 def test_search_bar():
     test_name = "헬피챗 검색창 정상 노출 검증"
     
