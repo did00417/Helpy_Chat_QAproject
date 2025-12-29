@@ -1,2 +1,1 @@
-TEST_LOGIN_ID = "qa3team0501@elicer.com"
-TEST_LOGIN_PASSWORD = "team05fighting!"
+# 계정 정보는 비공개 처리하였습니다
