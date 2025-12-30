@@ -12,7 +12,7 @@ from utils.helper import (
     BASE_URL
 )
 
-# 테스트 케이스 TC-CB-015 (보류 -> 수동테스트 진행)
+# 테스트 케이스 TC-CB-015 (보류 -> 수동테스트 진행 , 실패 케이스에 추가)
 
 def test_chat_update():
     test_name = "채팅 수정에 따른 검증 테스트"

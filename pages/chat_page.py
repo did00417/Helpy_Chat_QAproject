@@ -40,12 +40,16 @@ class ChatPage:
 
     def wait_for_ai_reply(self):
         """AI 답변 대기 div -> span으로 수정"""
-        reply = self.wait.until(
+        reply = WebDriverWait(self.driver, 60).until(
             EC.presence_of_element_located(
-                (By.CSS_SELECTOR, 'span[data-status="complete"]')
+                (By.CSS_SELECTOR, 'div.elice-aichat__markdown[data-status="complete"]')
+                )
             )
-        )
         return reply
+    
+    # def get_ai_reply_text(self):
+    #     reply = self.wait_for_ai_reply()
+    #     return reply.text.strip()
 
     def click_copy_button(self, reply_element):
         """복사 버튼 클릭 테스트"""
@@ -101,6 +105,16 @@ class ChatPage:
         )
         send_button.click()
         return send_button
+    
+    def web_search_Btn(self):
+        '''웹 검색 메뉴 클릭'''
+        web_search_Btn = self.wait.until(
+            EC.element_to_be_clickable((
+                    By.XPATH,
+                    "//li[@role='menuitem'][.//span[text()='웹 검색']]",
+                )))
+        web_search_Btn.click()
+        return web_search_Btn
     
     def uploaded_thumbnail_assert(self):
         '''업로드된 이미지 썸네일 표시 여부 확인'''

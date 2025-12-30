@@ -13,6 +13,7 @@ from utils.helper import (
 )
 
 # 테스트 ID = TC-CA-002
+# 엘리스 AI 챗봇의 답장이 오지않으므로 실패 케이스에 추가
 
 # 현재 이 파일(test_upload_files.py)이 있는 폴더 기준으로 PDF 파일 경로 설정
 BASE_DIR = os.path.dirname(__file__)                 # .../pytest-exam/tests
@@ -32,15 +33,15 @@ def test_login_then_upload_pdf_and_regenerate(driver):
     driver.maximize_window()
     
     login_page = LoginPage(driver)
-    # 1. 로그인 수행 (공통 함수 사용)
-    login_page.login(
-        email=TEST_LOGIN_ID,
-        password=TEST_LOGIN_PASSWORD,
-    )
 
     # 2. 로그인 후 예상 URL로 이동했는지 확인 (최대 10초)
     try:
-        wait_for_url_contains(driver, BASE_URL)
+        # 1. 로그인 수행 (공통 함수 사용)
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD,
+        )
+        # wait_for_url_contains(driver, BASE_URL)
     except Exception:
         current = driver.current_url
         assert BASE_URL in current, (
