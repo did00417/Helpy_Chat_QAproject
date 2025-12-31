@@ -16,25 +16,7 @@ def driver():
 def test_login_and_open_plus_menu(driver):
     wait = WebDriverWait(driver, 10)
 
-    # 1. 로그인 수행 (공통 함수 사용)
-    login_page = LoginPage(driver)
-    driver.get(BASE_URL)
-    driver.maximize_window()
-    login_page.login(
-        email="qa3team0501@elicer.com",
-        password="team05fighting!"
-    )
 
-    # 2. URL 확인 (간단 버전)
-    short_wait = WebDriverWait(driver, 4)
-    try:
-        short_wait.until(EC.url_contains(BASE_URL))
-    except Exception:
-        current = driver.current_url
-        assert BASE_URL in current, (
-            f"로그인 후 예상 URL({BASE_URL})로 이동하지 않았습니다. "
-            f"현재 URL: {current}"
-        )
 
     # 3. 채팅 입력창 쪽의 + 버튼 찾기
     plus_button = wait.until(

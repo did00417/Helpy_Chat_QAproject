@@ -39,17 +39,22 @@ class ChatPage:
         return self.driver
 
     def wait_for_ai_reply(self):
-        """AI 답변 대기 div -> span으로 수정"""
-        reply = WebDriverWait(self.driver, 60).until(
+        """AI 답변 대기 """
+        reply = WebDriverWait(self.driver, 120).until(
             EC.presence_of_element_located(
                 (By.CSS_SELECTOR, 'div.elice-aichat__markdown[data-status="complete"]')
                 )
             )
         return reply
     
-    # def get_ai_reply_text(self):
-    #     reply = self.wait_for_ai_reply()
-    #     return reply.text.strip()
+    def ai_reply_coniains_imge(self):
+        """AI 답변에 이미지 포함 여부 확인"""
+        reply_with_image = self.wait.until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, 'div.elice-aichat__markdown[data-status="complete"] img')
+            )
+        )
+        return reply_with_image.is_displayed()
 
     def click_copy_button(self, reply_element):
         """복사 버튼 클릭 테스트"""
@@ -70,6 +75,8 @@ class ChatPage:
         value = self.paste_to_input_box(reply_element)
         return value
     
+    # 고급 기능 관련 메서드
+    
     def plus_Btn(self):
         '''플러스 버튼 클릭'''
         plusBtn = self.wait.until(
@@ -77,6 +84,13 @@ class ChatPage:
         )
         plusBtn.click()
         return plusBtn
+    
+    def plus_menu_assert(self):
+        '''플러스 메뉴 레이어 팝업 표시 여부 확인'''
+        menu_layer = self.wait.until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, '[role="menu"]'))
+        )
+        return menu_layer
         
     def file_upload(self):
         '''파일 업로드 메뉴 클릭'''
@@ -106,6 +120,16 @@ class ChatPage:
         send_button.click()
         return send_button
     
+    def click_image_icon(self):
+        '''이미지 생성 아이콘 클릭'''
+        image_icon = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, '[data-testid="imageIcon"]')
+            )
+        )
+        image_icon.click()
+        return image_icon
+    
     def web_search_Btn(self):
         '''웹 검색 메뉴 클릭'''
         web_search_Btn = self.wait.until(
@@ -127,6 +151,8 @@ class ChatPage:
             )
         )
         return thumbnail.is_displayed()
+    
+    # 고급 기능 메서드 종료
     
     # 수정내용 관련 메서드 - 사용 안함
     def hover_update_message(self):

@@ -120,3 +120,122 @@ def test_regenerate_disabled_without_subject():
 
     finally:
         driver.quit()
+        
+    '''
+===========================
+테스트 케이스:TC-TO-009~TC-TO-011 완료(9,10 합침)
+코드 작성자: 양정은
+===========================
+'''
+
+def test_quiz_generation():
+    test_name = "AI 헬피챗 퀴즈 생성 테스트"
+    
+    driver = get_driver()
+    driver.get(BASE_URL)
+    driver.maximize_window()
+    start_time = time.time()
+    
+    login_page = LoginPage(driver)
+    tool_page = ToolPage(driver)
+    
+    try:
+        #테스트 시작
+        log_test_start(test_name)
+        
+        # 로그인
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
+        
+        # 도구 아이콘 클릭
+        tool_page.click_tool()
+
+        # 퀴즈 생성 클릭
+        tool_page.open_quiz_card()
+        
+        # 퀴즈 생성에 필요한 내용 입력
+        '''
+        객관식 단일 선택 = 0   난이도 상 = 3
+        객관식 복수 선택 = 1   난이도 중 = 2
+        주관식 = 3             난이도 하 = 1
+        '''
+        quiz_type = 3
+        quiz_level = 1
+        quiz_title = "인공지능 서비스 요구사항 도출 및 명세화에서 인공지는 서비스 요구사항 도출과 인공지능 서비스 요구사항 명세화에 대해서  퀴즈 10개를 만들어주고, 정답에 대한 설명도 추가해줘."
+        
+        tool_page.input_quiz_content(quiz_type, quiz_level, quiz_title)
+        
+        time.sleep(2)
+        
+        tool_page.get_quiz_generate_button()
+        tool_page.again_quiz_generate_click()
+        
+        time.sleep(5)
+        
+        assert tool_page.quiz_result_assert(), "퀴즈 생성에 실패했습니다."
+        print("✅ 퀴즈 생성 성공")
+    except Exception as e:
+        print("코드의 작동이 비정상적입니다.")
+        save_screenshot(driver, "get_ppt_generation")
+        log_test_failure(test_name, str(e), time.time() - start_time)
+        raise e
+
+    finally:
+        driver.quit()
+        
+        
+# 필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증 
+def test_quiz_regenerate_disabled_without_subject():
+    test_name = "필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증"
+    
+    driver = get_driver()
+    driver.get(BASE_URL)
+    driver.maximize_window()
+    start_time = time.time()
+    
+    login_page = LoginPage(driver)
+    tool_page = ToolPage(driver)
+    
+    try:
+        #테스트 시작
+        log_test_start(test_name)
+        
+        # 로그인
+        login_page.login(
+        email=TEST_LOGIN_ID,
+        password=TEST_LOGIN_PASSWORD
+    )
+        
+        # 도구 아이콘 클릭
+        tool_page.click_tool()
+
+        # 퀴즈 생성 클릭
+        tool_page.open_quiz_card()
+        
+         # PPT 생성에 필요한 내용 입력
+        '''
+        객관식 단일 선택 = 0   난이도 상 = 3
+        객관식 복수 선택 = 1   난이도 중 = 2
+        주관식 = 3             난이도 하 = 1
+        '''
+        quiz_type = 0
+        quiz_level = 2
+        quiz_title = ""
+        
+        tool_page.input_quiz_content(quiz_type, quiz_level, quiz_title)
+        
+        time.sleep(2)
+        
+        assert not tool_page.again_btn_assert().is_enabled()
+        print("✅ 퀴즈 필수 입력 값 미입력시 다시 생성 버튼 비활성화 검증 성공")
+   
+    except Exception as e:
+        print("코드의 작동이 비정상적입니다.")
+        save_screenshot(driver, "get_ppt_generation")
+        log_test_failure(test_name, str(e), time.time() - start_time)
+        raise e
+
+    finally:
+        driver.quit()
