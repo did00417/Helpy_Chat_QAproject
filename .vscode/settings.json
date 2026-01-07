@@ -5,8 +5,8 @@
     "titleBar.activeForeground": "#FFFBFD"
   },
   "python.languageServer": "Pylance",
-  "python.autoComplete.addBrackets": true,
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoImportCompletions": true,
-  "python.analysis.completeFunctionParens": true
+  "python.analysis.completeFunctionParens": true,
+  "python.defaultInterpreterPath": "venv/Scripts/python"
 }
