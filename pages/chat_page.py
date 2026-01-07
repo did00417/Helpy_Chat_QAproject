@@ -8,6 +8,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 class ChatPage:
     """채팅 페이지 관련 공통 기능 클래스"""
+    locators = {
+        "send_button": (By.XPATH, '//*[@data-testid="arrow-upIcon"]/ancestor::button')
+    }
 
     def __init__(self, driver):
         self.wait = WebDriverWait(driver, 30)
@@ -22,7 +25,7 @@ class ChatPage:
 
     def click_send_button(self):
         send_button = self.driver.find_element(
-            By.XPATH, '//*[@data-testid="arrow-upIcon"]/ancestor::button'
+            *self.locators["send_button"]
         )
         send_button.click()
         return send_button
@@ -154,7 +157,7 @@ class ChatPage:
     
     # 고급 기능 메서드 종료
     
-    # 수정내용 관련 메서드 - 사용 안함
+    ''' 수정내용 관련 메서드 - 사용 안함
     def hover_update_message(self):
         update_hover = self.driver.find_element(By.XPATH,
         '//span[@data-status="complete" and contains(text(), "홍길동")]/ancestor::div[contains(@class, "MuiPaper-root")]')
@@ -180,4 +183,5 @@ class ChatPage:
         update_send_Btn = self.driver.find_element(By.XPATH, '//button[contains(text(), "보내기")]')
         update_send_Btn.click()
         return update_send_Btn
+    '''
     
