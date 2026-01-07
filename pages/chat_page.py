@@ -9,7 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 class ChatPage:
     """채팅 페이지 관련 공통 기능 클래스"""
     locators = {
-        "send_button": (By.XPATH, '//*[@data-testid="arrow-upIcon"]/ancestor::button')
+        "send_button": (By.XPATH, '//*[@data-testid="arrow-upIcon"]/ancestor::button'),
     }
 
     def __init__(self, driver):
