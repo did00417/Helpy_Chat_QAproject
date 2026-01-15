@@ -36,9 +36,25 @@ pipeline {
                 call venv\\Scripts\\activate
 
                 pip install -r requirements_win.txt
-                pytest -v 
+
+                REM -v : verbose output
+                REM -s : show print() output
+                REM --junitxml : generate test report for Jenkins
+                pytest -vs --junitxml=pytest-report.xml
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Collecting test reports and artifacts'
+
+            // Pytest result summary in Jenkins UI
+            junit allowEmptyResults: true, testResults: 'pytest-report.xml'
+
+            // Selenium screenshots (if exist)
+            archiveArtifacts artifacts: 'screenshots/*.png', allowEmptyArchive: true
         }
     }
 }
