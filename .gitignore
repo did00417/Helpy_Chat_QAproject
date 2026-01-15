@@ -28,3 +28,5 @@ utils/screenshots/
 # - CI 파이프라인 안정화 후 다시 포함 예정
 # ======================
 tests/test_chat_update.py
+
+#test 수정 주석(필요없으니까 삭제)
