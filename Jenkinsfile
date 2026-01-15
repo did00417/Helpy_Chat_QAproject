@@ -36,7 +36,7 @@ pipeline {
                 call venv\\Scripts\\activate
 
                 pip install -r requirements_win.txt
-                pytest -vs
+                pytest
                 '''
             }
         }
