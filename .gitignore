@@ -18,6 +18,6 @@ __pycache__/
 # ----------------------
 # 특정 파일만 무시
 # ----------------------
-utils/constants.py
+# utils/constants.py
 utils/logs/
 utils/screenshots/
