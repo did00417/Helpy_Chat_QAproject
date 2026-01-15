@@ -2,41 +2,41 @@ pipeline {
     agent any
 
     stages {
-        stage('Python 가상환경 준비 및 버전 확인') {
+        stage('Prepare Python venv & Version Check') {
             steps {
                 bat '''
-                REM ===== Python 절대경로 (최초 진입점) =====
+                REM ===== Python absolute path (entry point) =====
                 set PYTHON_EXE=C:\\Users\\qlalf\\AppData\\Local\\Programs\\Python\\Python311\\python.exe
 
-                REM ===== 1. 가상환경 생성 =====
+                REM ===== 1. Create virtual environment if not exists =====
                 if not exist venv (
                     "%PYTHON_EXE%" -m venv venv
                 )
 
-                REM ===== 2. 가상환경 활성화 =====
+                REM ===== 2. Activate virtual environment =====
                 call venv\\Scripts\\activate
 
-                REM ===== 3. Python 버전 확인 =====
+                REM ===== 3. Check Python version =====
                 for /f "tokens=2 delims= " %%v in ('python --version') do set PY_VER=%%v
-                echo 현재 Python 버전: %PY_VER%
+                echo Current Python version: %PY_VER%
 
                 if NOT "%PY_VER%"=="3.11.9" (
-                    echo ❌ Python 3.11.9가 아닙니다. 빌드를 중단합니다.
+                    echo ERROR: Python version must be 3.11.9. Aborting build.
                     exit /b 1
                 )
 
-                echo ✅ Python 버전 조건 통과
+                echo OK: Python version check passed
                 '''
             }
         }
 
-        stage('pytest 실행') {
+        stage('Run pytest') {
             steps {
                 bat '''
                 call venv\\Scripts\\activate
 
                 pip install -r requirements_win.txt
-                pytest
+                pytest -v --html=report.html --self-contained-html
                 '''
             }
         }
