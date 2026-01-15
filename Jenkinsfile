@@ -9,10 +9,9 @@ pipeline {
         stage('Run QA Tests') {
             steps {
                 bat '''
-                    python --version
-                    pip --version
-                    pip install -r requirements_win.txt
-                    pytest -v
+                    "C:\\Users\\qlalf\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" --version
+                    "C:\\Users\\qlalf\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m pip install -r requirements_win.txt
+                    "C:\\Users\\qlalf\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m pytest -v
                 '''
             }
         }
