@@ -38,12 +38,13 @@ Selenium 기반 UI 자동화 테스트를 통해
 
 ## 🛠 사용 기술 및 도구
 
-| 구분 | 기술 |
-|------|------|
-| Language | Python |
-| Test Framework | pytest |
-| UI Automation | Selenium |
-| CI Tool | Jenkins |
+<p>
+  <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white" />
+  <img src="https://img.shields.io/badge/pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" />
+  <img src="https://img.shields.io/badge/jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white" />
+</p>
+
 
 ---
 
