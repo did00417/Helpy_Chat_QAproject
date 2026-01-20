@@ -43,7 +43,6 @@ Selenium 기반 UI 자동화 테스트를 통해
 | Language | Python |
 | Test Framework | pytest |
 | UI Automation | Selenium |
-| Test Design Pattern | Page Object Model (POM) |
 | CI Tool | Jenkins |
 
 ---
