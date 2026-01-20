@@ -38,9 +38,8 @@ pipeline {
                 pip install -r requirements_win.txt
 
                 REM -v : verbose output
-                REM -s : show print() output
                 REM --junitxml : generate test report for Jenkins
-                pytest -vs --junitxml=pytest-report.xml
+                pytest -v --junitxml=pytest-report.xml
                 '''
             }
         }
